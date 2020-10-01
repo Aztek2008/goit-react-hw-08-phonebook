@@ -23,5 +23,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(AppBar);
 
 AppBar.propTypes = {
-  isAuthenticated: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.string,
 };

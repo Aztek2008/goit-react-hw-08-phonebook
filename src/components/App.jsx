@@ -23,9 +23,7 @@ class App extends Component {
         <Section>
           <AppBar />
         </Section>
-        <Suspense
-          fallback={<h1 className="loading-state">Loading with suspense...</h1>}
-        >
+        <Suspense fallback={<h1 className="loading-state">Loading...</h1>}>
           <Switch>
             <Section>
               {routes.map((route) =>

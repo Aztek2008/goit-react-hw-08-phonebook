@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { authOperations } from "../redux/auth";
+import Button from "../components/Button/Button";
 
-import s from "../components/ContactForm/ContactForm.module.css";
 import AppearStyles from "../AppearStyles.module.css";
 
 class RegisterPage extends Component {
@@ -80,9 +80,7 @@ class RegisterPage extends Component {
             classNames={AppearStyles}
             timeout={200}
           >
-            <button type="submit" className={s.Button}>
-              Register
-            </button>
+            <Button buttonName="Register" />
           </CSSTransition>
         </form>
       </div>
