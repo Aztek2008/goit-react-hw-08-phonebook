@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import contactsOperations from "../../redux/contacts/contactsOperations";
-import contactsSelectors from "../../redux/contacts/contactsSelectors";
+import { contactsOperations, contactsSelectors } from "../../redux/contacts";
+import Button from "../Button/Button";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import s from "./ContactItem.module.css";
 
@@ -11,14 +11,7 @@ const ContactItem = ({ contact = {}, onRemoveContact }) => {
   return (
     <li className={s.ContactItem}>
       {contact.name}: {contact.number}
-      <button
-        type="submit"
-        id={contact.id}
-        className={s.Button}
-        onClick={onRemoveContact}
-      >
-        <span>✘</span>
-      </button>
+      <Button buttonName="✘" id={contact.id} onClick={onRemoveContact} />
     </li>
   );
 };
@@ -37,7 +30,7 @@ const mapDispatchToProps = (dispach, ownProps) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);
 
-// ContactItem.propTypes = {
-//   contact: PropTypes.object,
-//   onRemoveContact: PropTypes.object,
-// };
+ContactItem.propTypes = {
+  contact: PropTypes.object,
+  onRemoveContact: PropTypes.func.isRequired,
+};

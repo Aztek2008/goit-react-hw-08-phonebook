@@ -6,6 +6,11 @@
   /* box-shadow: var(--main-shadow); */
 }
 
+.contactsContainer {
+  padding: 10px;
+  width: 100%;
+}
+
 .ContactItem {
   display: flex;
   justify-content: space-between;

@@ -1,24 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { authSelectors } from "../redux/auth";
+import { authSelectors } from "../../redux/auth";
 
-const styles = {
-  link: {
-    display: "inline-block",
-    textDecoration: "none",
-    padding: 12,
-    fontWeight: 700,
-    color: "#2A363B",
-  },
-  activeLink: {
-    color: "#E84A5F",
-  },
-};
+import PropTypes from "prop-types";
+
+import s from "./Navigation.module.css";
 
 const Navigation = (isAuthenticated) => (
   <nav>
-    <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
+    <NavLink to="/" exact className={s.link} activeClassName={s.activeLink}>
       Home
     </NavLink>
 
@@ -26,8 +17,8 @@ const Navigation = (isAuthenticated) => (
       <NavLink
         to="/contacts"
         exact
-        style={styles.link}
-        activeStyle={styles.activeLink}
+        className={s.link}
+        activeClassName={s.activeLink}
       >
         Contacts
       </NavLink>
@@ -40,3 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Navigation);
+
+Navigation.propTypes = {
+  isAuthenticated: PropTypes.string,
+};

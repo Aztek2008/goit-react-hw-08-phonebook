@@ -3,6 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { authSelectors } from "../../redux/auth";
 
+import PropTypes from "prop-types";
+
 const PublicRoute = ({
   component: Component,
   restricted,
@@ -26,3 +28,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(PublicRoute);
+
+PublicRoute.propTypes = {
+  isAuthenticated: PropTypes.string,
+};

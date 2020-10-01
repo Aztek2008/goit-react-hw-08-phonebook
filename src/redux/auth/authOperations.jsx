@@ -18,7 +18,6 @@ const register = (credentials) => (dispatch) => {
   axios
     .post("/users/signup", credentials)
     .then((response) => {
-      console.log("response in register in auth", response);
       token.set(response.data.token);
       dispatch(authActions.registerSuccess(response.data));
     })
@@ -31,7 +30,6 @@ const logIn = (credentials) => (dispatch) => {
   axios
     .post("/users/login", credentials)
     .then((response) => {
-      console.log("response in login in auth", response);
       token.set(response.data.token);
       dispatch(authActions.loginSuccess(response.data));
     })

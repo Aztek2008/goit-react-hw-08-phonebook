@@ -8,8 +8,8 @@ const addContact = (contact) => (dispatch) => {
 
   axios
     .post("/contacts", contact)
-    .then((response) => {
-      dispatch(contactsActions.addContactSuccess(response.data));
+    .then(({ data }) => {
+      dispatch(contactsActions.addContactSuccess(data));
     })
     .catch((error) => dispatch(contactsActions.addContactError(error)));
 };
@@ -19,10 +19,10 @@ const fetchContacts = () => (dispatch) => {
 
   axios
     .get("/contacts")
-    .then((response) =>
-      dispatch(contactsActions.fetchContactsSuccess(response.data))
-    )
-    .catch((error) => dispatch(contactsActions.fetchContactsError(error)));
+    .then(({ data }) => dispatch(contactsActions.fetchContactsSuccess(data)))
+    .catch((error) =>
+      dispatch(contactsActions.fetchContactsError(error.message))
+    );
 };
 
 const removeContact = (id) => (dispatch) => {

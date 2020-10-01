@@ -5,42 +5,5 @@
   justify-content: space-around;
   width: 100%;
   padding: 10px;
-}
-
-/* input {
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #303030;
-  height: 30px;
-  width: 90%;
-  outline: none;
-}
-
-input[type="text"],
-select:focus,
-textarea {
-  font-size: 16px;
-}
-
-label {
-  width: 100%;
-} */
-
-.Button {
-  background-color: #fff;
-  font-size: 16px;
-  margin: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #303030;
-  outline: none;
-  cursor: pointer;
-  font-size: 14px;
   box-shadow: var(--main-shadow);
-  text-transform: uppercase;
-}
-
-.Button:hover {
-  background-color: #303030;
-  color: #fff;
 }

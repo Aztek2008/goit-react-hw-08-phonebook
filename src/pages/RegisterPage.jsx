@@ -1,20 +1,10 @@
 import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { authOperations } from "../redux/auth";
 
 import s from "../components/ContactForm/ContactForm.module.css";
-// import AppearStyles from "../components/ContactForm/AppearStyles.module.css";
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    padding: 4,
-  },
-};
+import AppearStyles from "../AppearStyles.module.css";
 
 class RegisterPage extends Component {
   state = {
@@ -39,10 +29,18 @@ class RegisterPage extends Component {
     const { name, email, password } = this.state;
     return (
       <div>
-        <h1>Register page</h1>
+        <CSSTransition
+          in={true}
+          appear
+          unmountOnExit
+          classNames={AppearStyles}
+          timeout={200}
+        >
+          <h1>Registration</h1>
+        </CSSTransition>
 
-        <form onSubmit={this.handleSubmit} style={styles.form}>
-          <label style={styles.label}>
+        <form onSubmit={this.handleSubmit}>
+          <label>
             Name
             <input
               type="text"
@@ -53,7 +51,7 @@ class RegisterPage extends Component {
             />
           </label>
 
-          <label style={styles.label}>
+          <label>
             Email
             <input
               type="email"
@@ -64,7 +62,7 @@ class RegisterPage extends Component {
             />
           </label>
 
-          <label style={styles.label}>
+          <label>
             Password
             <input
               type="password"
@@ -75,9 +73,17 @@ class RegisterPage extends Component {
             />
           </label>
 
-          <button type="submit" className={s.Button}>
-            Register
-          </button>
+          <CSSTransition
+            in={true}
+            appear
+            unmountOnExit
+            classNames={AppearStyles}
+            timeout={200}
+          >
+            <button type="submit" className={s.Button}>
+              Register
+            </button>
+          </CSSTransition>
         </form>
       </div>
     );

@@ -1,21 +1,10 @@
 import React, { Component } from "react";
+import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { authOperations } from "../redux/auth";
 
+import AppearStyles from "../AppearStyles.module.css";
 import s from "../components/ContactForm/ContactForm.module.css";
-
-// TODO: TO FIX STYLES;
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    padding: 4,
-  },
-};
 
 class LoginPage extends Component {
   state = {
@@ -39,10 +28,18 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <h1>Login page</h1>
+        <CSSTransition
+          in={true}
+          appear
+          unmountOnExit
+          classNames={AppearStyles}
+          timeout={200}
+        >
+          <h1>Login</h1>
+        </CSSTransition>
 
-        <form onSubmit={this.handleSubmit} style={styles.form}>
-          <label style={styles.label}>
+        <form onSubmit={this.handleSubmit}>
+          <label>
             Email
             <input
               type="email"
@@ -53,7 +50,7 @@ class LoginPage extends Component {
             />
           </label>
 
-          <label style={styles.label}>
+          <label>
             Password
             <input
               type="password"
@@ -64,9 +61,17 @@ class LoginPage extends Component {
             />
           </label>
 
-          <button className={s.Button} type="submit">
-            Login
-          </button>
+          <CSSTransition
+            in={true}
+            appear
+            unmountOnExit
+            classNames={AppearStyles}
+            timeout={200}
+          >
+            <button className={s.Button} type="submit">
+              Login
+            </button>
+          </CSSTransition>
         </form>
       </div>
     );

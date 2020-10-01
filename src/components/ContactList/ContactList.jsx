@@ -3,16 +3,32 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import contactsSelectors from "../../redux/contacts/contactsSelectors";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import ContactItem from "../ContactItem";
+import Filter from "../Filter";
 
-import AppearStyles from "./AppearStyles.module.css";
+import AppearStyles from "../../AppearStyles.module.css";
 import s from "./ContactList.module.css";
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, isLoadingContacts }) => {
   return (
-    <>
+    <div className={s.contactsContainer}>
+      {contacts.length > 0 && (
+        <CSSTransition
+          in={true}
+          appear
+          unmountOnExit
+          classNames={AppearStyles}
+          timeout={200}
+        >
+          <h2>Contacts</h2>
+        </CSSTransition>
+      )}
+      {/* ===================================================== */}
+      <Filter />
+      {isLoadingContacts && <h1 className="loading-state">Loading...</h1>}
+      {/* ===================================================== */}
       <TransitionGroup component="ul" className={s.ContactList}>
         {contacts.length > 0 &&
           contacts.map((contact) => (
@@ -25,21 +41,18 @@ const ContactList = ({ contacts }) => {
             </CSSTransition>
           ))}
       </TransitionGroup>
-    </>
+    </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   contacts: contactsSelectors.getVisibleContacts(state),
+  isLoadingContacts: contactsSelectors.getLoading(state),
 });
 
 export default connect(mapStateToProps)(ContactList);
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.array.isRequired,
-//   onRemoveContact: PropTypes.object,
-// };
-
-// NOTE: ГЛЮК ????
-//  Warning: Failed prop type: Invalid prop `onRemoveContact` of type `function` supplied to `ContactList`, expected `object`.
-//     in ContactList (created by ConnectFunction)
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onRemoveContact: PropTypes.func,
+};

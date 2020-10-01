@@ -1,3 +1,13 @@
+.appear {
+  opacity: 0;
+  transform: scale(0.1);
+}
+.appearActive {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 200ms linear;
+}
+
 .enter {
   opacity: 0;
   transform: scale(0.1);

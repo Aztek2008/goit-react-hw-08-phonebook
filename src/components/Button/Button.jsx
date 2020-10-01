@@ -1,11 +1,17 @@
 import React from "react";
-// import "../index.css";
 import styles from "./Button.module.css";
 
-export default function Button({ buttonName, onRemove, id }) {
+import PropTypes from "prop-types";
+
+export default function Button({ buttonName, onClick }) {
   return (
-    <button className={styles.Button} type="submit" onClick={onRemove} id={id}>
+    <button className={styles.Button} type="submit" onClick={onClick}>
       {buttonName}
     </button>
   );
 }
+
+Button.propTypes = {
+  buttonName: PropTypes.string,
+  onRemove: PropTypes.func,
+};

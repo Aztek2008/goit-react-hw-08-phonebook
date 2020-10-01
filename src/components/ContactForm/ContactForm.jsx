@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
 import contactsSelectors from "../../redux/contacts/contactsSelectors";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import Notification from "../Notification";
+import Button from "../Button/Button";
 import contactsOperations from "../../redux/contacts/contactsOperations";
 
 import s from "./ContactForm.module.css";
-import AppearStyles from "./AppearStyles.module.css";
+import AppearStyles from "../../AppearStyles.module.css";
 
 class ContactForm extends Component {
   state = {
@@ -75,7 +76,17 @@ class ContactForm extends Component {
         >
           <Notification />
         </CSSTransition>
+
         <form className={s.ContactForm} onSubmit={this.handleSubmit}>
+          <CSSTransition
+            in={true}
+            appear
+            unmountOnExit
+            classNames={AppearStyles}
+            timeout={200}
+          >
+            <h2>Phonebook</h2>
+          </CSSTransition>
           <label>
             <p>Name</p>
             <input
@@ -100,10 +111,17 @@ class ContactForm extends Component {
             />
           </label>
 
-          <button className={s.Button} type="submit">
-            Add Contact
-          </button>
+          <CSSTransition
+            in={true}
+            appear
+            unmountOnExit
+            classNames={AppearStyles}
+            timeout={200}
+          >
+            <Button buttonName="Add Contact" />
+          </CSSTransition>
         </form>
+        <hr />
       </>
     );
   }
@@ -119,10 +137,8 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 
-// ContactForm.propTypes = {
-//   name: PropTypes.string,
-//   number: PropTypes.string,
-//   existedContact: PropTypes.bool,
-// };
-
-// THROW ERROR MESSAGE AND DESCRIBES WRONG INFO
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.number,
+  existedContact: PropTypes.bool,
+};

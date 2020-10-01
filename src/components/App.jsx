@@ -2,8 +2,10 @@ import React, { Component, Suspense } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
+import PropTypes from "prop-types";
+
 import Section from "./Section";
-import AppBar from "./AppBar";
+import AppBar from "./AppBar/AppBar";
 import { PrivateRoute, PublicRoute } from "./CustomRoutes";
 import { contactsOperations, contactsSelectors } from "../redux/contacts";
 import { authOperations } from "../redux/auth";
@@ -20,13 +22,12 @@ class App extends Component {
       <BrowserRouter>
         <Section>
           <AppBar />
-
-          <Suspense
-            fallback={
-              <h1 className="loading-state">Loading with suspense...</h1>
-            }
-          >
-            <Switch>
+        </Section>
+        <Suspense
+          fallback={<h1 className="loading-state">Loading with suspense...</h1>}
+        >
+          <Switch>
+            <Section>
               {routes.map((route) =>
                 route.private ? (
                   <PrivateRoute key={route.label} {...route} />
@@ -38,9 +39,10 @@ class App extends Component {
                   />
                 )
               )}
-            </Switch>
-          </Suspense>
-        </Section>
+            </Section>
+          </Switch>
+        </Suspense>
+        {/* </Section> */}
       </BrowserRouter>
     );
   }
@@ -56,3 +58,9 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  isLoadingContact: PropTypes.bool,
+  onFetchContacts: PropTypes.func,
+  onGetCurrentUser: PropTypes.func,
+};
