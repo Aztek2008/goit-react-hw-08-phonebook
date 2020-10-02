@@ -8,9 +8,7 @@ const addContact = (contact) => (dispatch) => {
 
   axios
     .post("/contacts", contact)
-    .then(({ data }) => {
-      dispatch(contactsActions.addContactSuccess(data));
-    })
+    .then(({ data }) => dispatch(contactsActions.addContactSuccess(data)))
     .catch((error) => dispatch(contactsActions.addContactError(error)));
 };
 
@@ -19,9 +17,7 @@ const fetchContacts = () => (dispatch) => {
 
   axios
     .get("/contacts")
-    .then(({ data }) => {
-      dispatch(contactsActions.fetchContactsSuccess(data));
-    })
+    .then(({ data }) => dispatch(contactsActions.fetchContactsSuccess(data)))
     .catch((error) =>
       dispatch(contactsActions.fetchContactsError(error.message))
     );

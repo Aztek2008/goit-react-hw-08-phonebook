@@ -33,5 +33,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Navigation);
 
 Navigation.propTypes = {
-  isAuthenticated: PropTypes.string,
+  isAuthenticated: PropTypes.any,
 };

@@ -14,6 +14,7 @@ import s from "./ContactList.module.css";
 const ContactList = ({ contacts, isLoadingContacts }) => {
   return (
     <div className={s.contactsContainer}>
+      {/* TODO:TRY TO LEFT ONLY ONE RENDER CONTACT.LENGTH CONDITION */}
       {contacts.length > 0 && (
         <CSSTransition
           in={true}

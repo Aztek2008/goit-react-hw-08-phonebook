@@ -30,5 +30,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(PublicRoute);
 
 PublicRoute.propTypes = {
-  isAuthenticated: PropTypes.string,
+  isAuthenticated: PropTypes.any,
 };
