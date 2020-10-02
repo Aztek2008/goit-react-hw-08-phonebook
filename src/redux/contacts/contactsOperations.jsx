@@ -1,13 +1,11 @@
 import axios from "axios";
 import contactsActions from "../contacts/contactsActions";
 
-// axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com";
-
 const addContact = (contact) => (dispatch) => {
   dispatch(contactsActions.addContactRequest());
 
   axios
-    .post("/contacts", contact)
+    .post("/contacts", contact) // DO WE NEED {} IN DISPATCH SUCCESS
     .then(({ data }) => dispatch(contactsActions.addContactSuccess(data)))
     .catch((error) => dispatch(contactsActions.addContactError(error)));
 };
