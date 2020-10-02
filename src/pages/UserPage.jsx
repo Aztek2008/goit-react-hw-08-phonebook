@@ -4,6 +4,8 @@ import ContactForm from "../components/ContactForm";
 import ContactList from "../components/ContactList";
 import { contactsOperations } from "../redux/contacts";
 
+import PropTypes from "prop-types";
+
 class UserPage extends Component {
   render() {
     return (
@@ -20,3 +22,7 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(UserPage);
+
+UserPage.propTypes = {
+  onFetchTasks: PropTypes.func,
+};

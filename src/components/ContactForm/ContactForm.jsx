@@ -17,8 +17,9 @@ class ContactForm extends Component {
   state = {
     name: "",
     number: "",
-    existedContact: false,
     errorMessage: "",
+    goodPassword: true,
+    notificationMessage: "",
   };
 
   handleChange = (e) => {
@@ -58,23 +59,23 @@ class ContactForm extends Component {
     });
   };
 
-  showNotification = () => {
-    this.setState({ existedContact: true });
-    setTimeout(() => this.setState({ existedContact: false }), 5000);
+  showNotification = (message) => {
+    this.setState({ goodPassword: false, notificationMessage: message });
+    setTimeout(() => this.setState({ goodPassword: true }), 5000);
   };
 
   render() {
-    const { name, number, existedContact } = this.state;
+    const { name, number, goodPassword, notificationMessage } = this.state;
 
     return (
       <>
         <CSSTransition
-          in={existedContact}
+          in={!goodPassword}
           classNames={AppearStyles}
           unmountOnExit
           timeout={1000}
         >
-          <Notification />
+          <Notification message={notificationMessage} />
         </CSSTransition>
 
         <form className={s.ContactForm} onSubmit={this.handleSubmit}>
@@ -140,5 +141,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 ContactForm.propTypes = {
   name: PropTypes.string,
   number: PropTypes.number,
-  existedContact: PropTypes.bool,
+  goodPassword: PropTypes.bool,
+  notificationMessage: PropTypes.string,
 };

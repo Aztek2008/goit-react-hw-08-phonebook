@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { authOperations } from "../redux/auth";
 import Button from "../components/Button/Button";
 
+import PropTypes from "prop-types";
+
 import AppearStyles from "../AppearStyles.module.css";
 
 class LoginPage extends Component {
@@ -81,3 +83,8 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(LoginPage);
+
+LoginPage.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
+};

@@ -3,6 +3,9 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { authOperations } from "../redux/auth";
 import Button from "../components/Button/Button";
+import Notification from "../components/Notification";
+
+import PropTypes from "prop-types";
 
 import AppearStyles from "../AppearStyles.module.css";
 
@@ -11,6 +14,8 @@ class RegisterPage extends Component {
     name: "",
     email: "",
     password: "",
+    goodPassword: true,
+    notificationMessage: "",
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -20,15 +25,41 @@ class RegisterPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    if (this.state.password.length < 7) {
+      this.showNotification("Password should be more than 6 simbols");
+
+      return;
+    }
+
     this.props.onRegister({ ...this.state });
-    console.log("...this.state", { ...this.state });
+
     this.setState({ name: "", email: "", password: "" });
   };
 
+  showNotification = (message) => {
+    this.setState({ goodPassword: false, notificationMessage: message });
+    setTimeout(() => this.setState({ goodPassword: true }), 5000);
+  };
+
   render() {
-    const { name, email, password } = this.state;
+    const {
+      name,
+      email,
+      password,
+      goodPassword,
+      notificationMessage,
+    } = this.state;
     return (
       <div>
+        <CSSTransition
+          in={!goodPassword}
+          classNames={AppearStyles}
+          unmountOnExit
+          timeout={1000}
+        >
+          <Notification message={notificationMessage} />
+        </CSSTransition>
+
         <CSSTransition
           in={true}
           appear
@@ -93,3 +124,12 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
+
+RegisterPage.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  number: PropTypes.number,
+  goodPassword: PropTypes.bool,
+  notificationMessage: PropTypes.string,
+};
