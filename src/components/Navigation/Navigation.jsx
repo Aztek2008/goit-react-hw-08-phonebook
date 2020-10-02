@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import s from "./Navigation.module.css";
 
-const Navigation = (isAuthenticated) => (
+const Navigation = ({ isAuthenticated }) => (
   <nav>
     <NavLink to="/" exact className={s.link} activeClassName={s.activeLink}>
       Home
@@ -33,5 +33,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Navigation);
 
 Navigation.propTypes = {
-  isAuthenticated: PropTypes.any,
+  isAuthenticated: PropTypes.string,
 };
