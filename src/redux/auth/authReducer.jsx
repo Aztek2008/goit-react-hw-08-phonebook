@@ -11,13 +11,13 @@ const user = createReducer(initialUserState, {
   [authActions.logoutSuccess]: () => initialUserState,
 });
 
-const token = createReducer(initialUserState, {
+const token = createReducer(null, {
   [authActions.registerSuccess]: (_, { payload }) => payload.token,
   [authActions.loginSuccess]: (_, { payload }) => payload.token,
   [authActions.logoutSuccess]: () => null,
 });
 
-const error = createReducer(initialUserState, {
+const error = createReducer(null, {
   [authActions.registerError]: (_, { payload }) => payload,
   [authActions.loginError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,

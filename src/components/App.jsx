@@ -13,8 +13,8 @@ import routes from "../routes";
 
 class App extends Component {
   componentDidMount() {
-    this.props.onFetchContacts();
     this.props.onGetCurrentUser();
+    this.props.onFetchContacts();
   }
 
   render() {
