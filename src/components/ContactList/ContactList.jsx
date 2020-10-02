@@ -30,6 +30,7 @@ const ContactList = ({ contacts, isLoadingContacts }) => {
       <Filter />
       {isLoadingContacts && <h1 className="loading-state">Loading...</h1>}
       {/* ===================================================== */}
+      {/* <TransitionGroup component="ul"> */}
       <TransitionGroup component="ul" className={s.ContactList}>
         {contacts.length > 0 &&
           contacts.map((contact) => (

@@ -1,14 +1,19 @@
 .ContactList {
   width: 100%;
   min-height: 300px;
-  padding: 10px;
+  box-sizing: border-box;
+  padding: 20px;
 
-  /* box-shadow: var(--main-shadow); */
+  box-shadow: var(--main-shadow);
 }
 
 .contactsContainer {
-  padding: 10px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.contactsContainer > h2 {
+  margin-left: 20px;
 }
 
 .ContactItem {
